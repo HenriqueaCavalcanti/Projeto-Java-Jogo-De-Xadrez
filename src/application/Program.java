@@ -1,7 +1,10 @@
 package application;
 
+import camadadotabuleiro.Posicao;
+
 public class Program {
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        Posicao posicao = new Posicao(1, 2);
+        System.out.println(posicao);
     }
 }
