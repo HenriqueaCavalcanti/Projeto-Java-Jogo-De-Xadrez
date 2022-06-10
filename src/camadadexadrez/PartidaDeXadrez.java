@@ -2,7 +2,6 @@ package camadadexadrez;
 
 import camadadexadrez.pecas.Rei;
 import camadadexadrez.pecas.Torre;
-import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 
 public class PartidaDeXadrez {
@@ -22,9 +21,12 @@ public class PartidaDeXadrez {
         }
         return mat;
     }
+    private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca){
+        tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).toPosition());
+    }
     private void iniciandoJogo(){
-        tabuleiro.localPeca(new Rei(tabuleiro, Color.WHITE), new Posicao(2, 4));
-        tabuleiro.localPeca(new Torre(tabuleiro, Color.BLACK), new Posicao(3, 4));
+        coordenadasDoXadrez('b', 6, new Rei(tabuleiro, Color.WHITE));
+        coordenadasDoXadrez('a', 5, new Torre(tabuleiro, Color.BLACK));
     }
 
 }
