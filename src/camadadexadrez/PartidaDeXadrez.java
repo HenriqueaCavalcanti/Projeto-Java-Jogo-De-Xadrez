@@ -1,5 +1,8 @@
 package camadadexadrez;
 
+import camadadexadrez.pecas.Rei;
+import camadadexadrez.pecas.Torre;
+import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 
 public class PartidaDeXadrez {
@@ -7,6 +10,7 @@ public class PartidaDeXadrez {
 
     public PartidaDeXadrez(){
         tabuleiro = new Tabuleiro(8, 8);
+        iniciandoJogo();
     }
 
     public PecaDeXadrez[][] getPecas(){
@@ -17,6 +21,10 @@ public class PartidaDeXadrez {
             }
         }
         return mat;
+    }
+    private void iniciandoJogo(){
+        tabuleiro.localPeca(new Rei(tabuleiro, Color.WHITE), new Posicao(2, 1));
+        tabuleiro.localPeca(new Torre(tabuleiro, Color.BLACK), new Posicao(3, 4));
     }
 
 }
