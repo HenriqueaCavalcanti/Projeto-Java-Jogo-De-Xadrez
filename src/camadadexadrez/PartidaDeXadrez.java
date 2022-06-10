@@ -23,7 +23,7 @@ public class PartidaDeXadrez {
         return mat;
     }
     private void iniciandoJogo(){
-        tabuleiro.localPeca(new Rei(tabuleiro, Color.WHITE), new Posicao(2, 1));
+        tabuleiro.localPeca(new Rei(tabuleiro, Color.WHITE), new Posicao(2, 4));
         tabuleiro.localPeca(new Torre(tabuleiro, Color.BLACK), new Posicao(3, 4));
     }
 
