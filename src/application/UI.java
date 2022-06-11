@@ -3,6 +3,10 @@ package application;
 import camadadexadrez.Color;
 import camadadexadrez.PartidaDeXadrez;
 import camadadexadrez.PecaDeXadrez;
+import camadadexadrez.XadrezPosicao;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class UI {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
@@ -25,6 +29,18 @@ public class UI {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
+    public static XadrezPosicao lerPosicaoXadrez(Scanner sc) {
+        try {
+            String s = sc.nextLine();
+            char coluna = s.charAt(0);
+            int linha = Integer.parseInt(s.substring(1));
+            return new XadrezPosicao(coluna, linha);
+        }
+       catch (RuntimeException e){
+            throw new InputMismatchException("Erro lendo a posisão de xadrez.");
+       }
+    }
 
     public static void printTabuleiro(PecaDeXadrez[][] peca) {
         for (int i = 0; i < peca.length; i++) {
