@@ -5,7 +5,9 @@ import camadadexadrez.PecaDeXadrez;
 import camadadexadrez.XadrezPosicao;
 import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
+import camadadotabuleiro.TabuleiroException;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -15,16 +17,28 @@ public class Program {
         PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
 
         while (true) {
-            UI.printTabuleiro(partidaDeXadrez.getPecas());
-            System.out.println();
-            System.out.print("Inicial: ");
-            XadrezPosicao inicial = UI.lerPosicaoXadrez(sc);
+            try {
+                UI.clearScreen();
+                UI.printTabuleiro(partidaDeXadrez.getPecas());
+                System.out.println();
+                System.out.print("Inicial: ");
+                XadrezPosicao inicial = UI.lerPosicaoXadrez(sc);
 
-            System.out.println();
-            System.out.print("Destino: ");
-            XadrezPosicao destino = UI.lerPosicaoXadrez(sc);
+                System.out.println();
+                System.out.print("Destino: ");
+                XadrezPosicao destino = UI.lerPosicaoXadrez(sc);
 
-            PecaDeXadrez CapturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
+                PecaDeXadrez CapturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
+
+            }
+            catch (TabuleiroException e) {
+                System.out.println(e.getMessage());
+                sc.nextLine();
+            }
+            catch (InputMismatchException e){
+                System.out.println(e.getMessage());
+                sc.nextLine();
+            }
         }
     }
 }

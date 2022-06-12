@@ -40,6 +40,9 @@ public class PartidaDeXadrez {
         if(!tabuleiro.temUmaPeca(posicao)){
             throw new XadrezException("Não existe peça na posição de origem.");
         }
+        if (!tabuleiro.peca(posicao).impossibilidadeMovimento()){
+            throw new XadrezException("Não existe movimentos possiveis para a peça escolhida.");
+        }
     }
 
     private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca){
