@@ -1,6 +1,7 @@
 package camadadexadrez;
 
 import camadadotabuleiro.Peca;
+import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 
 public abstract class PecaDeXadrez extends Peca {
@@ -13,5 +14,10 @@ public abstract class PecaDeXadrez extends Peca {
 
     public Color getColor() {
         return color;
+    }
+
+    protected boolean adversario(Posicao posicao) {
+        PecaDeXadrez p = (PecaDeXadrez) getTabuleiro().peca(posicao);
+        return p != null && p.getColor() != color;
     }
 }
