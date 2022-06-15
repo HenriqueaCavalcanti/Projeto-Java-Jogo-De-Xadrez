@@ -23,6 +23,9 @@ public class Program {
                 System.out.println();
                 System.out.print("Inicial: ");
                 XadrezPosicao inicial = UI.lerPosicaoXadrez(sc);
+             boolean[][] possibilidadesMovimento = partidaDeXadrez.possiveisMovimentos(inicial);
+             UI.clearScreen();
+             UI.printTabuleiro(partidaDeXadrez.getPecas(), possibilidadesMovimento);
 
                 System.out.println();
                 System.out.print("Destino: ");
@@ -30,12 +33,10 @@ public class Program {
 
                 PecaDeXadrez CapturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
 
-            }
-            catch (TabuleiroException e) {
+            } catch (TabuleiroException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
-            }
-            catch (InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
                 sc.nextLine();
             }
