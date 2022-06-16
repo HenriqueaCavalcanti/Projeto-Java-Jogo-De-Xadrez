@@ -20,7 +20,7 @@ public class PartidaDeXadrez {
     public PartidaDeXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
         turno = 1;
-        jogadorAtual = Color.WHITE;
+        jogadorAtual = Color.BRANCO;
         iniciandoJogo();
     }
 
@@ -91,7 +91,7 @@ public class PartidaDeXadrez {
 
     private void proximoTurno() {
         turno++;
-        jogadorAtual = (jogadorAtual == Color.WHITE) ? Color.BLACK : Color.WHITE;
+        jogadorAtual = (jogadorAtual == Color.BRANCO) ? Color.PRETO : Color.PRETO;
     }
 
     private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca) {
@@ -100,20 +100,20 @@ public class PartidaDeXadrez {
     }
 
     private void iniciandoJogo() {
-        coordenadasDoXadrez('b', 6, new Torre(tabuleiro, Color.WHITE));
-        coordenadasDoXadrez('a', 5, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('c', 2, new Torre(tabuleiro, Color.WHITE));
-        coordenadasDoXadrez('d', 2, new Torre(tabuleiro, Color.WHITE));
-        coordenadasDoXadrez('e', 2, new Torre(tabuleiro, Color.WHITE));
-        coordenadasDoXadrez('e', 1, new Torre(tabuleiro, Color.WHITE));
-        coordenadasDoXadrez('d', 1, new Rei(tabuleiro, Color.WHITE));
+        coordenadasDoXadrez('b', 6, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('a', 5, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('c', 2, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('d', 2, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('e', 2, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('e', 1, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('d', 1, new Rei(tabuleiro, Color.BRANCO));
 
-        coordenadasDoXadrez('c', 7, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('c', 8, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('d', 7, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('e', 7, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('e', 8, new Torre(tabuleiro, Color.BLACK));
-        coordenadasDoXadrez('d', 8, new Rei(tabuleiro, Color.BLACK));
+        coordenadasDoXadrez('c', 7, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('c', 8, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('d', 7, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('e', 7, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('e', 8, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('d', 8, new Rei(tabuleiro, Color.PRETO));
     }
 
 }

@@ -88,7 +88,7 @@ public class UI {
         if (peca == null) {
             System.out.print("-" + ANSI_RESET);
         } else {
-            if (peca.getColor() == Color.WHITE) {
+            if (peca.getColor() == Color.BRANCO) {
                 System.out.print(ANSI_WHITE + peca + ANSI_RESET);
             } else {
                 System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
@@ -98,8 +98,8 @@ public class UI {
     }
 
     private static void printcapturaPecas(List<PecaDeXadrez> capturada) {
-        List<PecaDeXadrez> white = capturada.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
-        List<PecaDeXadrez> black = capturada.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+        List<PecaDeXadrez> white = capturada.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
+        List<PecaDeXadrez> black = capturada.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
         System.out.println("Captura de pecas: ");
         System.out.print("Pecas Brancas: ");
         System.out.print(ANSI_WHITE);
