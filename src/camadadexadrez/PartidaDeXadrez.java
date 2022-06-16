@@ -91,7 +91,7 @@ public class PartidaDeXadrez {
 
     private void proximoTurno() {
         turno++;
-        jogadorAtual = (jogadorAtual == Color.BRANCO) ? Color.PRETO : Color.PRETO;
+        jogadorAtual = (jogadorAtual == Color.BRANCO) ? Color.PRETO : Color.BRANCO;
     }
 
     private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca) {

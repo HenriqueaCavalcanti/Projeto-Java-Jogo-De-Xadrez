@@ -98,16 +98,16 @@ public class UI {
     }
 
     private static void printcapturaPecas(List<PecaDeXadrez> capturada) {
-        List<PecaDeXadrez> white = capturada.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
-        List<PecaDeXadrez> black = capturada.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
+        List<PecaDeXadrez> braco = capturada.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
+        List<PecaDeXadrez> preto = capturada.stream().filter(x -> x.getColor() == Color.PRETO).collect(Collectors.toList());
         System.out.println("Captura de pecas: ");
         System.out.print("Pecas Brancas: ");
         System.out.print(ANSI_WHITE);
-        System.out.println(Arrays.toString(white.toArray()));
+        System.out.println(Arrays.toString(braco.toArray()));
         System.out.print(ANSI_RESET);
         System.out.print("Pecas Pretas: ");
         System.out.print(ANSI_YELLOW);
-        System.out.println(Arrays.toString(black.toArray()));
+        System.out.println(Arrays.toString(preto.toArray()));
         System.out.print(ANSI_RESET);
 
 
