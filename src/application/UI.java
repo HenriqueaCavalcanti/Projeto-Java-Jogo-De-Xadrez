@@ -47,6 +47,13 @@ public class UI {
         }
     }
 
+    public static void printJogo(PartidaDeXadrez partidaDeXadrez){
+        printTabuleiro(partidaDeXadrez.getPecas());
+        System.out.println();
+        System.out.println("Turno: " + partidaDeXadrez.getTurno());
+        System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
+    }
+
     public static void printTabuleiro(PecaDeXadrez[][] peca) {
         for (int i = 0; i < peca.length; i++) {
             System.out.print((8 - i) + " ");
