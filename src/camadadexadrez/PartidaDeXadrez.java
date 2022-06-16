@@ -6,10 +6,16 @@ import camadadotabuleiro.Peca;
 import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartidaDeXadrez {
     private int turno;
     private Color jogadorAtual;
     private Tabuleiro tabuleiro;
+
+    private List<Peca> pecaNoTabuleiro = new ArrayList<>();
+    private List<Peca> pecaCapturada = new ArrayList<>();
 
     public PartidaDeXadrez() {
         tabuleiro = new Tabuleiro(8, 8);
@@ -17,10 +23,12 @@ public class PartidaDeXadrez {
         jogadorAtual = Color.WHITE;
         iniciandoJogo();
     }
-    public int getTurno(){
+
+    public int getTurno() {
         return turno;
     }
-    public Color getJogadorAtual(){
+
+    public Color getJogadorAtual() {
         return jogadorAtual;
     }
 
@@ -54,6 +62,11 @@ public class PartidaDeXadrez {
         Peca p = tabuleiro.removerPeca(inicial);
         Peca capturadaPeca = tabuleiro.removerPeca(destino);
         tabuleiro.localPeca(p, destino);
+
+        if (capturadaPeca != null) {
+            pecaNoTabuleiro.remove(capturadaPeca);
+            pecaCapturada.add(capturadaPeca);
+        }
         return capturadaPeca;
     }
 
@@ -62,9 +75,9 @@ public class PartidaDeXadrez {
             throw new XadrezException("Nao existe peca na posicao de origem.");
         }
 
-         if(jogadorAtual != ((PecaDeXadrez)tabuleiro.peca(posicao)).getColor()) {
-             throw new XadrezException("A peca escolhida nao e sua.");
-         }
+        if (jogadorAtual != ((PecaDeXadrez) tabuleiro.peca(posicao)).getColor()) {
+            throw new XadrezException("A peca escolhida nao e sua.");
+        }
         if (!tabuleiro.peca(posicao).impossibilidadeMovimento()) {
             throw new XadrezException("Nao existe movimentos possiveis para a peca escolhida.");
         }
@@ -75,13 +88,15 @@ public class PartidaDeXadrez {
             throw new XadrezException("A peca escolhida nao pode se mover para a posicao de destino.");
         }
     }
-private void proximoTurno(){
+
+    private void proximoTurno() {
         turno++;
         jogadorAtual = (jogadorAtual == Color.WHITE) ? Color.BLACK : Color.WHITE;
-}
+    }
 
     private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca) {
         tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).toPosition());
+        pecaNoTabuleiro.add(peca);
     }
 
     private void iniciandoJogo() {

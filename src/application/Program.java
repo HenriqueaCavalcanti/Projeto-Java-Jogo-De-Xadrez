@@ -7,7 +7,9 @@ import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 import camadadotabuleiro.TabuleiroException;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Program {
@@ -15,11 +17,13 @@ public class Program {
         Scanner sc = new Scanner(System.in);
 
         PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();
+        List<PecaDeXadrez> capturadas = new ArrayList<>();
+
 
         while (true) {
             try {
                 UI.clearScreen();
-                UI.printJogo(partidaDeXadrez);
+                UI.printJogo(partidaDeXadrez, capturadas);
                 System.out.println();
                 System.out.print("Inicial: ");
                 XadrezPosicao inicial = UI.lerPosicaoXadrez(sc);
@@ -31,7 +35,10 @@ public class Program {
                 System.out.print("Destino: ");
                 XadrezPosicao destino = UI.lerPosicaoXadrez(sc);
 
-                PecaDeXadrez CapturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
+                PecaDeXadrez capturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
+                if (capturaPeca != null){
+                    capturadas.add(capturaPeca);
+                }
 
             } catch (TabuleiroException e) {
                 System.out.println(e.getMessage());

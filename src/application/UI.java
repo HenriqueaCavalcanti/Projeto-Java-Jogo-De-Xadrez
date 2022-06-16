@@ -5,8 +5,11 @@ import camadadexadrez.PartidaDeXadrez;
 import camadadexadrez.PecaDeXadrez;
 import camadadexadrez.XadrezPosicao;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class UI {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
@@ -47,8 +50,10 @@ public class UI {
         }
     }
 
-    public static void printJogo(PartidaDeXadrez partidaDeXadrez){
+    public static void printJogo(PartidaDeXadrez partidaDeXadrez, List<PecaDeXadrez> capturadas) {
         printTabuleiro(partidaDeXadrez.getPecas());
+        System.out.println();
+        printcapturaPecas(capturadas);
         System.out.println();
         System.out.println("Turno: " + partidaDeXadrez.getTurno());
         System.out.println("Esperando o jogador: " + partidaDeXadrez.getJogadorAtual());
@@ -77,9 +82,9 @@ public class UI {
     }
 
     private static void printPecas(PecaDeXadrez peca, boolean background) {
-       if (background){
-           System.out.print(ANSI_BLUE_BACKGROUND);
-       }
+        if (background) {
+            System.out.print(ANSI_BLUE_BACKGROUND);
+        }
         if (peca == null) {
             System.out.print("-" + ANSI_RESET);
         } else {
@@ -90,6 +95,22 @@ public class UI {
             }
         }
         System.out.print(" ");
+    }
+
+    private static void printcapturaPecas(List<PecaDeXadrez> capturada) {
+        List<PecaDeXadrez> white = capturada.stream().filter(x -> x.getColor() == Color.WHITE).collect(Collectors.toList());
+        List<PecaDeXadrez> black = capturada.stream().filter(x -> x.getColor() == Color.BLACK).collect(Collectors.toList());
+        System.out.println("Captura de pecas: ");
+        System.out.print("Pecas Brancas: ");
+        System.out.print(ANSI_WHITE);
+        System.out.println(Arrays.toString(white.toArray()));
+        System.out.print(ANSI_RESET);
+        System.out.print("Pecas Pretas: ");
+        System.out.print(ANSI_YELLOW);
+        System.out.println(Arrays.toString(black.toArray()));
+        System.out.print(ANSI_RESET);
+
+
     }
 }
 
