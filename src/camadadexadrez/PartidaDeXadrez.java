@@ -1,5 +1,6 @@
 package camadadexadrez;
 
+import camadadexadrez.pecas.Peao;
 import camadadexadrez.pecas.Rei;
 import camadadexadrez.pecas.Torre;
 import camadadotabuleiro.Peca;
@@ -187,11 +188,27 @@ public class PartidaDeXadrez {
     }
 
     private void iniciandoJogo() {
-        coordenadasDoXadrez('h', 7, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('d', 1, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('a', 1, new Torre(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('e', 1, new Rei(tabuleiro, Color.BRANCO));
-
-        coordenadasDoXadrez('b', 8, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('a', 8, new Rei(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('h', 1, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('a', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('b', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('c', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('d', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('e', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('f', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('g', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('h', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('a', 8, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('e', 8, new Rei(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('h', 8, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('a', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('b', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('c', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('d', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('e', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('f', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('g', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('h', 7, new Peao(tabuleiro, Color.PRETO));
     }
 }
