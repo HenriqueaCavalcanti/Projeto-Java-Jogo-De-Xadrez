@@ -73,15 +73,15 @@ public class PartidaDeXadrez {
         check = (testeCheck(oponente(jogadorAtual))) ? true : false;
         if (testeCheckMate(oponente(jogadorAtual))) {
             checkMate = true;
-        }
-        else {
+        } else {
             proximoTurno();
         }
         return (PecaDeXadrez) capturaPeca;
     }
 
     private Peca makeMove(Posicao inicial, Posicao destino) {
-        Peca p = tabuleiro.removerPeca(inicial);
+        PecaDeXadrez p = (PecaDeXadrez) tabuleiro.removerPeca(inicial);
+        p.incrementarMovimento();
         Peca capturadaPeca = tabuleiro.removerPeca(destino);
         tabuleiro.localPeca(p, destino);
 
@@ -93,7 +93,8 @@ public class PartidaDeXadrez {
     }
 
     private void desfazerMovimento(Posicao inicial, Posicao destino, Peca capturadaPeca) {
-        Peca p = tabuleiro.removerPeca(destino);
+        PecaDeXadrez p = (PecaDeXadrez) tabuleiro.removerPeca(destino);
+        p.decrementarMovimento();
         tabuleiro.localPeca(p, inicial);
 
         if (capturadaPeca != null) {
