@@ -6,7 +6,6 @@ import camadadotabuleiro.Peca;
 import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +15,7 @@ public class PartidaDeXadrez {
     private Color jogadorAtual;
     private Tabuleiro tabuleiro;
     private boolean check;
+    private boolean checkMate;
 
     private List<Peca> pecaNoTabuleiro = new ArrayList<>();
     private List<Peca> pecaCapturada = new ArrayList<>();
@@ -35,8 +35,12 @@ public class PartidaDeXadrez {
         return jogadorAtual;
     }
 
-    public boolean getCheck(){
+    public boolean getCheck() {
         return check;
+    }
+
+    public boolean getCheckMate() {
+        return checkMate;
     }
 
     public PecaDeXadrez[][] getPecas() {
@@ -62,13 +66,17 @@ public class PartidaDeXadrez {
         validateFinalPosicao(destino, inicial);
         Peca capturaPeca = makeMove(inicial, destino);
 
-        if (testeCheck(jogadorAtual)){
+        if (testeCheck(jogadorAtual)) {
             desfazerMovimento(inicial, destino, capturaPeca);
             throw new XadrezException("Voce nao pode se colocar em check");
         }
         check = (testeCheck(oponente(jogadorAtual))) ? true : false;
-
-        proximoTurno();
+        if (testeCheckMate(oponente(jogadorAtual))) {
+            checkMate = true;
+        }
+        else {
+            proximoTurno();
+        }
         return (PecaDeXadrez) capturaPeca;
     }
 
@@ -146,26 +154,43 @@ public class PartidaDeXadrez {
         return false;
     }
 
+    private boolean testeCheckMate(Color color) {
+        if (!testeCheck(color)) {
+            return false;
+        }
+        List<Peca> list = pecaNoTabuleiro.stream().filter(x -> ((PecaDeXadrez) x).getColor() == color).collect(Collectors.toList());
+        for (Peca p : list) {
+            boolean[][] mat = p.possibilidadesMovimentos();
+            for (int i = 0; i < tabuleiro.getLinhas(); i++) {
+                for (int j = 0; j < tabuleiro.getColunas(); j++) {
+                    if (mat[i][j]) {
+                        Posicao inicial = ((PecaDeXadrez) p).getXadrezPosicao().toPosition();
+                        Posicao destino = new Posicao(i, j);
+                        Peca capturaPeca = makeMove(inicial, destino);
+                        boolean testandoCheck = testeCheck(color);
+                        desfazerMovimento(inicial, destino, capturaPeca);
+                        if (!testandoCheck) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+
     private void coordenadasDoXadrez(char coluna, int linha, PecaDeXadrez peca) {
         tabuleiro.localPeca(peca, new XadrezPosicao(coluna, linha).toPosition());
         pecaNoTabuleiro.add(peca);
     }
 
     private void iniciandoJogo() {
-        coordenadasDoXadrez('b', 6, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('a', 5, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('c', 2, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('d', 2, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('e', 2, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('e', 1, new Torre(tabuleiro, Color.BRANCO));
-        coordenadasDoXadrez('d', 1, new Rei(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('h', 7, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('d', 1, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('e', 1, new Rei(tabuleiro, Color.BRANCO));
 
-        coordenadasDoXadrez('c', 7, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('c', 8, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('d', 7, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('e', 7, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('e', 8, new Torre(tabuleiro, Color.PRETO));
-        coordenadasDoXadrez('d', 8, new Rei(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('b', 8, new Torre(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('a', 8, new Rei(tabuleiro, Color.PRETO));
     }
-
 }
