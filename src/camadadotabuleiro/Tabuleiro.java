@@ -7,7 +7,7 @@ public class Tabuleiro {
 
     public Tabuleiro(int linhas, int colunas) {
        if (linhas < 1 || colunas < 1) {
-           throw new TabuleiroException("Erro criando tabuleiro: É necessário que tenha ao menos uma linha e uma coluna");
+           throw new TabuleiroException("Erro criando tabuleiro: E necessario que tenha ao menos uma linha e uma coluna");
        }
         this.linhas = linhas;
         this.colunas = colunas;
@@ -26,28 +26,28 @@ public class Tabuleiro {
 
     public Peca peca(int linhas, int colunas) {
         if (!posicaoExiste(linhas, colunas)) {
-            throw new TabuleiroException("Posição inválida no tabuleir");
+            throw new TabuleiroException("Posicao invalida no tabuleiro");
         }
         return pecas[linhas][colunas];
     }
 
     public Peca peca(Posicao posicao) {
         if (!posicaoExiste(posicao)) {
-            throw new TabuleiroException("Posição do tabuleiro inválida");
+            throw new TabuleiroException("Posicao do tabuleiro invalida");
         }
         return pecas[posicao.getLinha()][posicao.getColuna()];
     }
 
     public void localPeca(Peca peca, Posicao posicao) {
         if(temUmaPeca(posicao)) {
-            throw new TabuleiroException("Já existe uma peça na posição " + posicao);
+            throw new TabuleiroException("Ja existe uma peca na posicao " + posicao);
         }
         pecas[posicao.getLinha()][posicao.getColuna()] = peca;
         peca.posicao = posicao;
     }
     public Peca removerPeca(Posicao posicao){
         if (!posicaoExiste(posicao)) {
-            throw new TabuleiroException("Posição do tabuleiro inválida");
+            throw new TabuleiroException("Posicao do tabuleiro invalida");
         }
         if(peca(posicao) == null) {
             return null;
@@ -67,7 +67,7 @@ public class Tabuleiro {
     }
     public boolean temUmaPeca(Posicao posicao){
         if (!posicaoExiste(posicao)) {
-            throw new TabuleiroException("Posição inválida no tabuleiro");
+            throw new TabuleiroException("Posicao invalida no tabuleiro");
         }
        return peca(posicao) != null;
     }
