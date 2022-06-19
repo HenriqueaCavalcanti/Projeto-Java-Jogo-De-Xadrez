@@ -197,6 +197,7 @@ public class PartidaDeXadrez {
         coordenadasDoXadrez('b', 2, new Peao(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('c', 2, new Peao(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('d', 2, new Peao(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('d', 1, new Rainha(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('e', 2, new Peao(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('f', 2, new Peao(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('g', 2, new Peao(tabuleiro, Color.BRANCO));
@@ -211,6 +212,7 @@ public class PartidaDeXadrez {
         coordenadasDoXadrez('b', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('c', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('d', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('d', 8, new Rainha(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('e', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('f', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('g', 7, new Peao(tabuleiro, Color.PRETO));
