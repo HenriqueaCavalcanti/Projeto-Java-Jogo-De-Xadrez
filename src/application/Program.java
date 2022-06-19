@@ -43,7 +43,7 @@ public class Program {
                     System.out.print("Informe a peca que deseja trocar (B/C/A/T): ");
                     String type = sc.nextLine().toUpperCase();
                   while (!type.equals("C") && !type.equals("T") && !type.equals("A") && !type.equals("B")){
-                      System.out.print(" Peca informada invalida! Infome a peca que deseja trocar (B/C/A/T): ");
+                      System.out.print("Peca informada invalida! Infome a peca que deseja trocar (B/C/A/T): ");
                       type = sc.nextLine().toUpperCase();
                   }
                     partidaDeXadrez.pecaPromovida(type);
