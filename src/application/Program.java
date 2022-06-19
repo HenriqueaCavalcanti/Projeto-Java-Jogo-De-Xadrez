@@ -36,8 +36,15 @@ public class Program {
                 XadrezPosicao destino = UI.lerPosicaoXadrez(sc);
 
                 PecaDeXadrez capturaPeca = partidaDeXadrez.movimentoDaPeca(inicial, destino);
+
                 if (capturaPeca != null){
                     capturadas.add(capturaPeca);
+                }
+
+                if (partidaDeXadrez.getPromocao() != null){
+                    System.out.println("Informe a peca que deseja trocar (B/C/A/T): ");
+                    String type = sc.nextLine();
+                    partidaDeXadrez.pecaPromovida(type);
                 }
 
             } catch (TabuleiroException e) {
