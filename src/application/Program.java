@@ -7,10 +7,8 @@ import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
 import camadadotabuleiro.TabuleiroException;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.security.InvalidParameterException;
+import java.util.*;
 
 public class Program {
     public static void main(String[] args) {
@@ -42,8 +40,12 @@ public class Program {
                 }
 
                 if (partidaDeXadrez.getPromocao() != null){
-                    System.out.println("Informe a peca que deseja trocar (B/C/A/T): ");
-                    String type = sc.nextLine();
+                    System.out.print("Informe a peca que deseja trocar (B/C/A/T): ");
+                    String type = sc.nextLine().toUpperCase();
+                  while (!type.equals("C") && !type.equals("T") && !type.equals("A") && !type.equals("B")){
+                      System.out.print(" Peca informada invalida! Infome a peca que deseja trocar (B/C/A/T): ");
+                      type = sc.nextLine().toUpperCase();
+                  }
                     partidaDeXadrez.pecaPromovida(type);
                 }
 
