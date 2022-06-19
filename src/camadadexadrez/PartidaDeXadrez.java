@@ -1,9 +1,6 @@
 package camadadexadrez;
 
-import camadadexadrez.pecas.Bispo;
-import camadadexadrez.pecas.Peao;
-import camadadexadrez.pecas.Rei;
-import camadadexadrez.pecas.Torre;
+import camadadexadrez.pecas.*;
 import camadadotabuleiro.Peca;
 import camadadotabuleiro.Posicao;
 import camadadotabuleiro.Tabuleiro;
@@ -190,6 +187,8 @@ public class PartidaDeXadrez {
 
     private void iniciandoJogo() {
         coordenadasDoXadrez('a', 1, new Torre(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('b', 1, new Cavalo(tabuleiro, Color.BRANCO));
+        coordenadasDoXadrez('g', 1, new Cavalo(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('c', 1, new Bispo(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('f', 1, new Bispo(tabuleiro, Color.BRANCO));
         coordenadasDoXadrez('e', 1, new Rei(tabuleiro, Color.BRANCO));
@@ -216,5 +215,8 @@ public class PartidaDeXadrez {
         coordenadasDoXadrez('f', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('g', 7, new Peao(tabuleiro, Color.PRETO));
         coordenadasDoXadrez('h', 7, new Peao(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('b', 8, new Cavalo(tabuleiro, Color.PRETO));
+        coordenadasDoXadrez('g', 8, new Cavalo(tabuleiro, Color.PRETO));
+
     }
 }
